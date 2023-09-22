@@ -1,0 +1,379 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.SourceLink.GitHub.1.1.1\build\Microsoft.SourceLink.GitHub.props" Condition="Exists('..\packages\Microsoft.SourceLink.GitHub.1.1.1\build\Microsoft.SourceLink.GitHub.props')" />
+  <Import Project="..\packages\Microsoft.SourceLink.Common.1.1.1\build\Microsoft.SourceLink.Common.props" Condition="Exists('..\packages\Microsoft.SourceLink.Common.1.1.1\build\Microsoft.SourceLink.Common.props')" />
+  <Import Project="..\packages\Microsoft.Build.Tasks.Git.1.1.1\build\Microsoft.Build.Tasks.Git.props" Condition="Exists('..\packages\Microsoft.Build.Tasks.Git.1.1.1\build\Microsoft.Build.Tasks.Git.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{40522B22-288F-4A70-A3B0-69E19B89B7F5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sistema_de_Gestion_de_Linea</RootNamespace>
+    <AssemblyName>Sistema de Gestion de Linea</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44344</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ABM Proyectos\AltadeProyecto.aspx" />
+    <Content Include="ABM Proyectos\Editar Proyecto.aspx" />
+    <Content Include="ABM Proyectos\historicoDeProyectos.aspx" />
+    <Content Include="ABM Proyectos\modificarProyecto.aspx" />
+    <Content Include="ABM Proyectos\Ver Proyectos.aspx" />
+    <Content Include="ABM Usuarios\AltadeUsuario.aspx" />
+    <Content Include="ABM Usuarios\cambiarPass.aspx" />
+    <Content Include="ABM Usuarios\ModificacionUsuario.aspx" />
+    <Content Include="App_Data\DatabaseSGL.mdf" />
+    <Content Include="App_Data\DatabaseSGL_log.ldf">
+      <DependentUpon>DatabaseSGL.mdf</DependentUpon>
+    </Content>
+    <Content Include="Asignaciones\AsignacionProyectos.aspx" />
+    <Content Include="Bienvenidos.aspx" />
+    <Content Include="index.html" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.rtl.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-reboot.rtl.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-utilities.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-utilities.min.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-utilities.rtl.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap.min.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap.rtl.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap.rtl.min.css" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.esm.js" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.esm.min.js" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.js" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.min.js" />
+    <Content Include="Login.aspx" />
+    <Content Include="MEDIA\LOGO-removebg-preview.png" />
+    <Content Include="MEDIA\LOGO.jpg" />
+    <Content Include="MEDIA\LOGO2.jpg" />
+    <Content Include="Style CSS\Estilo PMaestra.css" />
+    <Content Include="Style CSS\General.css" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ABM Proyectos\AltadeProyecto.aspx.cs">
+      <DependentUpon>AltadeProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM Proyectos\AltadeProyecto.aspx.designer.cs">
+      <DependentUpon>AltadeProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Proyectos\Editar Proyecto.aspx.cs">
+      <DependentUpon>Editar Proyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM Proyectos\Editar Proyecto.aspx.designer.cs">
+      <DependentUpon>Editar Proyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Proyectos\historicoDeProyectos.aspx.cs">
+      <DependentUpon>historicoDeProyectos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM Proyectos\historicoDeProyectos.aspx.designer.cs">
+      <DependentUpon>historicoDeProyectos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Proyectos\modificarProyecto.aspx.cs">
+      <DependentUpon>modificarProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM Proyectos\modificarProyecto.aspx.designer.cs">
+      <DependentUpon>modificarProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Proyectos\Ver Proyectos.aspx.cs">
+      <DependentUpon>Ver Proyectos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM Proyectos\Ver Proyectos.aspx.designer.cs">
+      <DependentUpon>Ver Proyectos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Usuarios\AltadeUsuario.aspx.cs">
+      <DependentUpon>AltadeUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM Usuarios\AltadeUsuario.aspx.designer.cs">
+      <DependentUpon>AltadeUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Usuarios\cambiarPass.aspx.cs">
+      <DependentUpon>cambiarPass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM Usuarios\cambiarPass.aspx.designer.cs">
+      <DependentUpon>cambiarPass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Usuarios\ModificacionUsuario.aspx.cs">
+      <DependentUpon>ModificacionUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM Usuarios\ModificacionUsuario.aspx.designer.cs">
+      <DependentUpon>ModificacionUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asignaciones\AsignacionProyectos.aspx.cs">
+      <DependentUpon>AsignacionProyectos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asignaciones\AsignacionProyectos.aspx.designer.cs">
+      <DependentUpon>AsignacionProyectos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bienvenidos.aspx.cs">
+      <DependentUpon>Bienvenidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bienvenidos.aspx.designer.cs">
+      <DependentUpon>Bienvenidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMAESTRA.Master.cs">
+      <DependentUpon>PMAESTRA.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMAESTRA.Master.designer.cs">
+      <DependentUpon>PMAESTRA.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="libman.json" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-utilities.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-utilities.min.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap.rtl.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap.rtl.min.css.map" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.esm.js.map" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.esm.min.js.map" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.js.map" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="lib\twitter-bootstrap\scss\_accordion.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_alert.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_badge.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_breadcrumb.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_button-group.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_buttons.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_card.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_carousel.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_close.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_containers.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_dropdown.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_forms.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_functions.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_grid.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_helpers.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_images.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_list-group.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_maps.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_mixins.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_modal.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_nav.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_navbar.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_offcanvas.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_pagination.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_placeholders.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_popover.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_progress.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_reboot.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_root.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_spinners.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_tables.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_toasts.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_tooltip.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_transitions.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_type.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_utilities.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\bootstrap-grid.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\bootstrap-reboot.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\bootstrap-utilities.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\bootstrap.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\forms\_floating-labels.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\forms\_form-check.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\forms\_form-control.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\forms\_form-range.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_variables-dark.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\_variables.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\forms\_form-select.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\forms\_form-text.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\forms\_input-group.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\forms\_labels.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\forms\_validation.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\helpers\_clearfix.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\helpers\_color-bg.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\helpers\_colored-links.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\helpers\_focus-ring.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\helpers\_icon-link.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\helpers\_position.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\helpers\_ratio.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\helpers\_stacks.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\helpers\_stretched-link.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\helpers\_text-truncation.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\helpers\_visually-hidden.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\helpers\_vr.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_alert.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_backdrop.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_banner.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_border-radius.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_box-shadow.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_breakpoints.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_buttons.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_caret.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_clearfix.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_color-mode.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_color-scheme.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_container.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_deprecate.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_forms.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_gradients.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_grid.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_image.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_list-group.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_lists.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_pagination.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_reset-text.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_resize.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_table-variants.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_text-truncate.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_transition.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_utilities.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\mixins\_visually-hidden.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\utilities\_api.scss" />
+    <Content Include="lib\twitter-bootstrap\scss\vendor\_rfs.scss" />
+    <None Include="packages.config" />
+    <Content Include="PMAESTRA.Master" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50203</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44344/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Build.Tasks.Git.1.1.1\build\Microsoft.Build.Tasks.Git.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Build.Tasks.Git.1.1.1\build\Microsoft.Build.Tasks.Git.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Build.Tasks.Git.1.1.1\build\Microsoft.Build.Tasks.Git.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Build.Tasks.Git.1.1.1\build\Microsoft.Build.Tasks.Git.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.SourceLink.Common.1.1.1\build\Microsoft.SourceLink.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.Common.1.1.1\build\Microsoft.SourceLink.Common.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.SourceLink.Common.1.1.1\build\Microsoft.SourceLink.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.Common.1.1.1\build\Microsoft.SourceLink.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.SourceLink.GitHub.1.1.1\build\Microsoft.SourceLink.GitHub.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.GitHub.1.1.1\build\Microsoft.SourceLink.GitHub.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.SourceLink.GitHub.1.1.1\build\Microsoft.SourceLink.GitHub.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.GitHub.1.1.1\build\Microsoft.SourceLink.GitHub.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Build.Tasks.Git.1.1.1\build\Microsoft.Build.Tasks.Git.targets" Condition="Exists('..\packages\Microsoft.Build.Tasks.Git.1.1.1\build\Microsoft.Build.Tasks.Git.targets')" />
+  <Import Project="..\packages\Microsoft.SourceLink.Common.1.1.1\build\Microsoft.SourceLink.Common.targets" Condition="Exists('..\packages\Microsoft.SourceLink.Common.1.1.1\build\Microsoft.SourceLink.Common.targets')" />
+  <Import Project="..\packages\Microsoft.SourceLink.GitHub.1.1.1\build\Microsoft.SourceLink.GitHub.targets" Condition="Exists('..\packages\Microsoft.SourceLink.GitHub.1.1.1\build\Microsoft.SourceLink.GitHub.targets')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
