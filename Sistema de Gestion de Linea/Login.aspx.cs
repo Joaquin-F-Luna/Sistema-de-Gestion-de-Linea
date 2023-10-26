@@ -20,13 +20,20 @@ namespace Sistema_de_Gestion_de_Linea
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //Consulta sql server para reiniciciar tabla a 0 de nuevo (id a cero) --> DBCC CHECKIDENT('NombreTabla', RESEED, 0);
-
+          
             Session["usuario"] = " ";
             Session["Email"] = " ";
             Session["Nombre"] = " ";
             Session["Apellido"] = " ";
             Session["Activo"] = " ";
+        }
+        public static string encriptarPass(string pass)
+        {
+            SHA1 metodo = new SHA1CryptoServiceProvider();
+            byte[] inputBytes = (new UnicodeEncoding()).GetBytes(pass);
+            byte[] hash = metodo.ComputeHash(inputBytes);
+
+            return Convert.ToBase64String(hash);
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -36,13 +43,15 @@ namespace Sistema_de_Gestion_de_Linea
                         WHERE Username = @nomusuario
                         AND Contraseña = @contraseña";
 
+
             using (SqlConnection connSGL = new SqlConnection(ConfigurationManager.ConnectionStrings["DBSGL"].ToString()))
             {
                 connSGL.Open();
 
                 SqlCommand cmd = new SqlCommand(sqlvalidauser, connSGL);
                 cmd.Parameters.AddWithValue("@nomusuario", TxtUsuario.Text);
-                cmd.Parameters.AddWithValue("@contraseña", txtPass.Text);
+                //cmd.Parameters.AddWithValue("@contraseña", txtPass.Text);
+                cmd.Parameters.AddWithValue("@contraseña", encriptarPass(txtPass.Text));
 
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -57,33 +66,33 @@ namespace Sistema_de_Gestion_de_Linea
                     Session["usuario"] = TxtUsuario.Text;
 
 
-                    string ConsultaValida = @"SELECT Email, Nombre, Apellido, Activo
-                      FROM USUARIOS
+                    string ConsultaValida = @"SELECT U.Email, U.Nombre, U.Apellido, U.Activo, R.Descripcion
+                      FROM USUARIOS U
+                      INNER JOIN ROLES R
+                                ON U.idRol_FK = R.Idrol
                       WHERE Username = @usuario";
 
-                    using (SqlConnection com = new SqlConnection(ConfigurationManager.ConnectionStrings["DBSGL"].ToString()))
-                    {
-
-                        SqlCommand sqlcomando = new SqlCommand(ConsultaValida, connSGL);
+                    SqlCommand sqlcomando = new SqlCommand(ConsultaValida, connSGL);
                         sqlcomando.Parameters.AddWithValue("@usuario", Session["usuario"]);
 
-                        Session["Email"] = Convert.ToString(sqlcomando.ExecuteScalar());
-                        Session["Nombre"] = Convert.ToString(sqlcomando.ExecuteScalar());                      
-                        Session["Apellido"] = Convert.ToString(sqlcomando.ExecuteScalar());                       
-                        Session["Activo"] = Convert.ToString(sqlcomando.ExecuteScalar());
-                        connSGL.Close();
+                        SqlDataReader reader = sqlcomando.ExecuteReader();
 
+                    if (reader.Read())
+                    {
+                        Session["Email"] = Convert.ToString(reader["Email"]);
+                        Session["Nombre"] = Convert.ToString(reader["Nombre"]);
+                        Session["Apellido"] = Convert.ToString(reader["Apellido"]);
+                        Session["Activo"] = Convert.ToString(reader["Activo"]);
+                        Session["Rol"] = Convert.ToString(reader["Descripcion"]);
                     }
+                    connSGL.Close();
 
-                    Response.Redirect("Bienvenidos.aspx");
+                    Response.Redirect("~/Bienvenidos.aspx");
 
                 }
 
-
-
             }
         }
-        
 
     }
 }

@@ -13,5 +13,12 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Usuarios
         {
 
         }
+        protected void btnIrAEditar_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            string idUsuario = GridView1.DataKeys[row.RowIndex].Value.ToString();
+            Response.Redirect("ModificarUsuario.aspx?Id=" + idUsuario);
+        }
     }
 }

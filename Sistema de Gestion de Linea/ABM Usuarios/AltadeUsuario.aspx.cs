@@ -42,9 +42,12 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Usuarios
 
             using (SqlConnection sqlConn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBSGL"].ToString()))
             {
+                sqlConn.Open();
+                SqlTransaction transaction = sqlConn.BeginTransaction(); // Inicia la transacción
+
                 try
                 {
-                    sqlConn.Open();
+                   
 
                     SqlCommand sqlcomando = new SqlCommand(SQL_Select, sqlConn);
 
@@ -62,7 +65,7 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Usuarios
                         {
 
                             string passEncriptada = encriptarPass(claveRandom);
-                            
+
                             SqlCommand sqlcomando2 = new SqlCommand(Consulta, sqlConn);
                             sqlcomando2.Parameters.AddWithValue("nombreusuario", txtNombre.Text);
                             sqlcomando2.Parameters.AddWithValue("apellido", txtApellido.Text);
@@ -72,25 +75,27 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Usuarios
                             sqlcomando2.Parameters.AddWithValue("activo", "True");
                             sqlcomando2.Parameters.AddWithValue("contraseña", passEncriptada);
                             sqlcomando2.ExecuteNonQuery();
-                            sqlConn.Close();
+                            transaction.Commit();
+
+
 
                             lblnoti.ForeColor = Color.Green;
                             lblnoti.Text = "Se dio de alta con exito!";
 
                             //Enviar email
-                            string correoRemitente = "joaquinf.luna1@gmail.com";
+                            string correoRemitente = "megared.sgl@gmail.com";
                             string correoDestinatario = txtEmail.Text;
 
                             // Configuración del cliente SMTP
                             SmtpClient clienteSmtp = new SmtpClient("smtp.gmail.com");
                             clienteSmtp.Port = 587;
                             clienteSmtp.EnableSsl = true;
-                            clienteSmtp.Credentials = new NetworkCredential(correoRemitente, "xidv jobf kjgw zpkc");
+                            clienteSmtp.Credentials = new NetworkCredential(correoRemitente, "uovm eulg fzjv jdch");
 
                             // Crear el mensaje
                             MailMessage mensaje = new MailMessage(correoRemitente, correoDestinatario);
-                            mensaje.Subject = "Bienvenido";
-                            mensaje.Body = "Bienvenido al sistema SGL de MegaRed!\n" +
+                            mensaje.Subject = "Bienvenido al Sistema de Gestión de Lineas";
+                            mensaje.Body = "¡Hola! Bienvenido al sistema SGL de MegaRed\n" +
                                  "Tu usuario es: " + txtUser.Text + "\n" +
                                  "Tu clave es: " + claveRandom + "\n" +
                                  "Recuerda cambiar tu contraseña una vez que hayas ingresado.\n" +
@@ -110,9 +115,11 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Usuarios
                         }
                         catch (Exception ex)
                         {
+                           
                             lblnoti.ForeColor = Color.Red;
                             lblnoti.Text = ex.Message;
                         }
+
                     }
                     else
                     {
@@ -126,8 +133,13 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Usuarios
                 }
                 catch (Exception ex)
                 {
+                    transaction.Rollback();
                     lblnoti.ForeColor = Color.Red;
                     lblnoti.Text = ex.Message;
+                }
+                finally
+                {
+                    sqlConn.Close();
                 }
             }
             txtNombre.Text = "";

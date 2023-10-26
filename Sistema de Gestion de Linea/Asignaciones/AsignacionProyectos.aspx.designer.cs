@@ -33,6 +33,15 @@ namespace Sistema_de_Gestion_de_Linea.Asignaciones
         protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
+        /// Control Label1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// Control nroticket.
         /// </summary>
         /// <remarks>
@@ -87,6 +96,15 @@ namespace Sistema_de_Gestion_de_Linea.Asignaciones
         protected global::System.Web.UI.WebControls.DropDownList DDL_tipoasignar;
 
         /// <summary>
+        /// Control usuario_asignar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox usuario_asignar;
+
+        /// <summary>
         /// Control observacion.
         /// </summary>
         /// <remarks>
@@ -96,24 +114,6 @@ namespace Sistema_de_Gestion_de_Linea.Asignaciones
         protected global::System.Web.UI.WebControls.TextBox observacion;
 
         /// <summary>
-        /// Control DDL_tipoestadoasignacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDL_tipoestadoasignacion;
-
-        /// <summary>
-        /// Control DDL_tipoUsuarioAsig.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDL_tipoUsuarioAsig;
-
-        /// <summary>
         /// Control btnAsignar.
         /// </summary>
         /// <remarks>
@@ -121,5 +121,23 @@ namespace Sistema_de_Gestion_de_Linea.Asignaciones
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAsignar;
+
+        /// <summary>
+        /// Control notificacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label notificacion;
+
+        /// <summary>
+        /// Control gdtodosproyectos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gdtodosproyectos;
     }
 }

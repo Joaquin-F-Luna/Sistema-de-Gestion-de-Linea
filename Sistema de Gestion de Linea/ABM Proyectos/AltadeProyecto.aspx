@@ -47,13 +47,43 @@
             });
         </script>
     <!-- ---------------------------------------------------------------------------- -->
+   <style>
+        .notificacion-float {
+            position: fixed;
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+
+    <script>
+        function mostrarNotificacion(mensaje, color) {
+            var notificacion = document.getElementById('notificacion');
+            notificacion.innerText = mensaje;
+            notificacion.style.color = color;  // Establece el color del texto
+
+            notificacion.style.display = 'block';
+
+            setTimeout(function () {
+                notificacion.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+
 
     <title>Nuevo proyecto</title>
 </head>
 
 <body>
   
-    <div class="continer-fluid">
+    <div class="continer-fluid mt-1">
         <div class="alert alert-primary" role="alert">
             <h4 class="title">Agregar Nuevo Proyecto</h4>
         </div>
@@ -168,13 +198,10 @@
             <br>
                   <div class="row">
 
-                      <%--<div class="form-group col-md-4">
-                        <button class="btn btn-outline-primary btn-lg" onclick="AgregarNuevoProyecto_Click">Agregar Nuevo Proyecto</button>
-                       </div>--%>
-
                       <div class="mb-2 col-lg-5">
-                             <asp:Button ID="btnNuevoP" runat="server" class="form-control btn btn-primary" 
+                              <asp:Button ID="btnNuevoP" runat="server" class="form-control btn btn-primary" 
                                  Text="Agregar Nuevo Proyecto" OnClick="AgregarNuevoProyecto_Click" />
+
                       </div>
 
                       <div class="form-group col-md-4">
@@ -185,21 +212,15 @@
                      </div>
                  </div>
 
-             <div class="form-group">
-                        <asp:Label ID="notificacion" runat="server" Text="" CssClass="control-label-sm-2"></asp:Label>
-                    </div>
+             <div id="notificacion" class="notificacion-float">
+    <asp:Label runat="server" ID="notificacion" CssClass="control-label-sm-2"></asp:Label>
+</div>
 
     <div class="form-group">
                         <asp:Label ID="Label1" runat="server" Text="" CssClass="control-label-sm-2"></asp:Label>
                     </div>
-               
         </form>
-        
     </div>
-   
-
-
 </body>  
-
 </html>
 </asp:Content>

@@ -30,7 +30,7 @@
 
               <div class="mb-3 col-lg-4">
                 <label for="pass">Contraseña actual</label>
-                <asp:TextBox ID="pass" runat="server" inputtype="text" class="form-control" 
+                <asp:TextBox ID="pass" runat="server" TextMode="Password" class="form-control" 
                     placeholder="Escribe tu Contraseña Actual" required></asp:TextBox>
               </div>
          
@@ -38,12 +38,12 @@
         <div class="row">
             <div class="mb-3 col-lg-4">
                 <label for="newPass" class="form-label">Nueva contraseña</label>
-                <asp:TextBox ID="newPass" runat="server" inputtype="text" class="form-control" 
+                <asp:TextBox ID="newPass" runat="server" TextMode="Password" class="form-control" 
                     placeholder="Escribe tu contraseña nueva" required></asp:TextBox>
               </div>
          <div class="mb-3 col-lg-4">
                 <label for="checkNewPass" class="form-label">Confirmar nueva contraseña</label>
-                <asp:TextBox ID="checkNewPass" runat="server" inputtype="text" class="form-control"
+                <asp:TextBox ID="checkNewPass" runat="server" TextMode="Password" class="form-control"
                     placeholder="Confirma tu contraseña nueva" required></asp:TextBox>
               </div>
         </div>

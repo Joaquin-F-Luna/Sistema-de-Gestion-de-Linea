@@ -46,11 +46,13 @@
               </div>
               <div class="mb-4 col-lg-8">
               <label for="DropDownList" class="form-label">Rol asignado:  </label>
-              <asp:DropDownList ID="dropRol" runat="server" BackColor="ButtonShadow" Font-Size="Large" CssClass="border-black" Font-Bold="False" Font-Italic="False" Font-Names="Arial" Font-Overline="False" ForeColor="#333333" >
-                   <asp:ListItem Value="1" Text="Administrador"></asp:ListItem>
-                   <asp:ListItem Value="2" Text="Coordinador"></asp:ListItem>
-                   <asp:ListItem Value="3" Text="Dispatcher"></asp:ListItem>
+              <asp:DropDownList ID="dropRol" runat="server" BackColor="ButtonShadow" Font-Size="Large" DataSourceID="SqlDataSource1"  DataTextField="Descripcion" DataValueField="Idrol"
+                  CssClass="border-black" Font-Bold="False" Font-Italic="False" Font-Names="Arial" Font-Overline="False" ForeColor="#333333" >
+                          
                   </asp:DropDownList>
+                      <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
+                SelectCommand="SELECT * FROM ROLES">
+            </asp:SqlDataSource>
               </div>
               <div class="mb-2 col-lg-8 <%--floating-label--%>"> 
               <asp:Label ID="lblnoti" runat="server" Text=" "></asp:Label>

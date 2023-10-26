@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PMAESTRA.Master" AutoEventWireup="true" CodeBehind="ModificacionUsuario.aspx.cs" Inherits="Sistema_de_Gestion_de_Linea.ABM_Usuarios.ModificaciónUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PMAESTRA.Master" AutoEventWireup="true" CodeBehind="ListaUsuario.aspx.cs" Inherits="Sistema_de_Gestion_de_Linea.ABM_Usuarios.ModificaciónUsuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -29,7 +29,15 @@
         <div>
             <h2>Usuarios</h2>
             <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True">
+                 <Columns>
+                <asp:TemplateField HeaderText="Editar"><ItemTemplate>
+
+                            <asp:Button ID="btnIrAEditar" runat="server" Text="Editar" OnClick="btnIrAEditar_Click" 
+                                 PostBackUrl='<%# "ModificarUsuario.aspx?Id=" + Eval("Id") %>' />
+                             </ItemTemplate></asp:TemplateField>
+                     </Columns>
             </asp:GridView>
+
             <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
                 SelectCommand="SELECT * FROM Usuarios">
             </asp:SqlDataSource>

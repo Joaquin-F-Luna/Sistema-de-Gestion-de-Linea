@@ -1,24 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PMAESTRA.Master" AutoEventWireup="true" CodeBehind="Editar Proyecto.aspx.cs" Inherits="Sistema_de_Gestion_de_Linea.ABM_Proyectos.Editar_Proyecto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="es">
 <head>
- 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Bootstrap CSS -->
-    <!-- Agrega la referencia al archivo CSS de Bootstrap desde la CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Edit proyecto</title>
 
-    <!-- Agrega la referencia al archivo JavaScript de Bootstrap desde la CDN -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
     <!-- Necesario para agregar los calendarios -->
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="/resources/demos/style.css">
-        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
     
         <script>
             $.datepicker.regional['es'] = {
@@ -45,19 +43,51 @@
                 $("#<%= fechafin.ClientID %>").datepicker();
             });
         </script>
-    <!-- ---------------------------------------------------------------------------- -->
 
+     <style>
+        body {
+            margin: 20px; /* Puedes ajustar el margen según tus necesidades */
+        }
+    </style>
+
+    <!-- ---------------------------------------------------------------------------- -->
+    <style>
+        .notificacion-float {
+            position: fixed;
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+
+    <script>
+        function mostrarNotificacion(mensaje, color) {
+            var notificacion = document.getElementById('notificacion');
+            notificacion.innerText = mensaje;
+            notificacion.style.color = color;  // Establece el color del texto
+
+            notificacion.style.display = 'block';
+
+            setTimeout(function () {
+                notificacion.style.display = 'none';
+            }, 5000);
+        }
+    </script>
     <title>Edit proyecto</title>
 </head>
 
 <body>
-  
-    <div class="continer-fluid">
+    <div class="container mx-auto">
         <div class="alert alert-primary" role="alert">
             <h4 class="title">Editar un Proyecto</h4>
             <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
-            
-
         </div>
 
         <form runat="server" >
@@ -99,7 +129,7 @@
                     <label for="descripcion" class="fw-bold">Descripcion del Proyecto</label>
                           <asp:TextBox runat="server" class="form-control" name="descripcion" TextMode="MultiLine"
                         ID="descripcion" MaxLength="1000" Style="height: 100px; width: 600px" 
-                        Rows="3" placeholder="Descripcion proyecto ..." required></asp:TextBox>
+                        Rows="3" placeholder="Descripcion proyecto ..."></asp:TextBox>
                 </div> 
                  </div>
             
@@ -174,30 +204,34 @@
             
                   </asp:DropDownList>
                                </div>
-                
-           </dv>
+  
+                 <div class="form-group col-md-4 fw-bold">
+                 <label for="ddlEstado" class="form-label">Estado:  </label>
+              <asp:DropDownList ID="ddl_estado" runat="server" BackColor="ButtonShadow" Font-Size="Large" DataSourceID="SqlDataSource1"  DataTextField="Estado" DataValueField="Id"
+                   CssClass="form-select" Font-Bold="False" Font-Italic="False" Font-Names="Arial" Font-Overline="False" ForeColor="#333333" >
+                          
+                  </asp:DropDownList>
+                      <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
+                SelectCommand="SELECT * FROM EstadoProyecto">
+            </asp:SqlDataSource>
+                     </div>
+
+           </div>
             <br>
  
+
 
             <br>
                   <div class="row">
 
-                      <%--<div class="form-group col-md-4">
-                        <button class="btn btn-outline-primary btn-lg" onclick="AgregarNuevoProyecto_Click">Agregar Nuevo Proyecto</button>
-                       </div>--%>
-
-                      
-
-                     
                  </div>
 
-         
 
                 <asp:Button ID="Button2" runat="server" class="btn btn-primary" Text="Editar el Proyecto" OnClick="btn_editar"/>
 
-            <div class="form-group">
-                        <asp:Label ID="notificacion" runat="server" Text="" CssClass="control-label-sm-2"></asp:Label>
-                    </div>
+            <div id="notificacion" class="notificacion-float">
+    <asp:Label runat="server" ID="notificacion" CssClass="control-label-sm-2"></asp:Label>
+</div>
 
                 <div class="form-group">
                         <asp:Label ID="Label2" runat="server" Text="" CssClass="control-label-sm-2"></asp:Label>

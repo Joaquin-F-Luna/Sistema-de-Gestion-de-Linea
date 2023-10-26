@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Web.UI.WebControls;
 using System.Globalization;
 using static Sistema_de_Gestion_de_Linea.ABM_Proyectos.Editar_Proyecto;
+using System.Web.UI;
 
 namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
 {
@@ -13,7 +14,7 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            //DBCC CHECKIDENT ('MiTabla', RESEED, 0); resetar valor del ID para que inicie en 1, ejecutar como consulta sql en la bbdd
+          
            
         }
 
@@ -22,7 +23,18 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
             DateTime fechaIn = DateTime.ParseExact(fechainicio.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).Date;
             DateTime fechaFin = DateTime.ParseExact(fechafin.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).Date;
 
-            string Consulta = @"INSERT INTO Proyecto (FK_ID_Usuario, NumeroTicket, NumeroLinea,
+            if (fechaIn > fechaFin)
+            {
+                
+                string color = "red";
+                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarNotificacion", $"mostrarNotificacion('La fecha de inicio debe ser anterior.', '{color}');", true);
+               
+            }
+            else
+            {
+
+            
+                string Consulta = @"INSERT INTO Proyecto (FK_ID_Usuario, NumeroTicket, NumeroLinea,
                                                        Descripcion, FechaInicio, FechaFinalizacion, Calle, NumeroCalle, 
                                                          Localidad, FK_ID_Estado, FechaCreacion, idTipoTrabajo_FK, idPrioridad_FK)
 
@@ -30,18 +42,17 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
                                                      @Descripcion, @fechaInicio,@fechaFin, @Calle, @NumeroCalle,
                                                         @Localidad, @FK_ID_Estado, @FechaCreacion,@idTipoTrabajo_FK, @idPrioridad_FK)";
             
-            //string obtenerIDProyecto = @"SELECT MAX(ID_Proyecto) FROM Proyecto";
-            //string ConsultaAsignacion = @"INSERT INTO Asignaciones (idProyecto_FK, Area, estado_asignacion)
-            //                    VALUES (@idProyecto_FK, @area, @estado_asig)";
 
-            using (SqlConnection sqlConn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBSGL"].ToString()))
-            {
+             using (SqlConnection sqlConn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBSGL"].ToString()))
+             {
+                sqlConn.Open();
+                SqlTransaction transaction = sqlConn.BeginTransaction(); // Inicia la transacción
                 try
                 {
                     int idUsuarioLog = idUsuarioLoggeado(Session["Usuario"].ToString());
 
-                    sqlConn.Open();
-                    SqlCommand sqlcomando = new SqlCommand(Consulta, sqlConn);
+                   
+                    SqlCommand sqlcomando = new SqlCommand(Consulta, sqlConn, transaction);
                     sqlcomando.Parameters.AddWithValue("@FK_ID_Usuario", idUsuarioLog);
                     sqlcomando.Parameters.AddWithValue("@NumeroTicket", nroticket.Text);
                     sqlcomando.Parameters.AddWithValue("@NumeroLinea", nrolinea.Text);
@@ -57,29 +68,27 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
                     sqlcomando.Parameters.AddWithValue("@FechaCreacion", DateTime.Now);
                     sqlcomando.ExecuteNonQuery();
 
+                    transaction.Commit();
 
-                    //SqlCommand sqlcomandoIdProyecto = new SqlCommand(obtenerIDProyecto, sqlConn);
-                    //int idProyecto = Convert.ToInt32(sqlcomandoIdProyecto.ExecuteScalar());
-                    
-                    //// Insertar en la tabla Asignaciones
-                    //SqlCommand sqlcomandoAsignacion = new SqlCommand(ConsultaAsignacion, sqlConn);
-                    //sqlcomandoAsignacion.Parameters.AddWithValue("@idProyecto_FK", idProyecto);
-                    //sqlcomandoAsignacion.Parameters.AddWithValue("@area", "Asignacion"); // Supongo un valor para area
-                    //sqlcomandoAsignacion.Parameters.AddWithValue("@estado_asig", "Abierto"); // Supongo un valor para estado_asig
-                    //sqlcomandoAsignacion.ExecuteNonQuery();
-                    //sqlConn.Close();
-                    notificacion.ForeColor = Color.Green;
-                    notificacion.Text = "Se dio de alta con éxito!";
 
-                    //Label1.Text = Convert.ToString(idProyecto);
-                }
-                catch (Exception ex)
+                        string color = "green";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "mostrarNotificacion", $"mostrarNotificacion('Se dio de alta con éxito!', '{color}');", true);
+                        Response.AppendHeader("Refresh", "5;url=AltadeProyecto.aspx");
+                        //Label1.Text = Convert.ToString(idProyecto);
+                    }
+                    catch (Exception ex)
                 {
-                    notificacion.ForeColor = Color.Red;
-                    notificacion.Text = "Error: " + ex.Message;
-                   
+                    transaction.Rollback();
 
+                        string color = "red";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "mostrarNotificacion", $"mostrarNotificacion('Error: {ex.Message}', '{color}');", true);
+                    
                 }
+                finally
+                {
+                    sqlConn.Close(); 
+                }
+             }
             }
             nrolinea.Text = "";
             nroticket.Text = "";

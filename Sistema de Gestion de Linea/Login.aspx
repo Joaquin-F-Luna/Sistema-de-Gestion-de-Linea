@@ -27,19 +27,19 @@
         </div>
         <br>
         <form class="border border-primary bg-light rounded-lg p-3" action="" method="post" runat="server">
-            <h4 class="title">Ingresa tu email y contraseña</h4>
+            <h4 class="title">Ingresa tu usuario y contraseña</h4>
             <br>
             <div>
                 <div form runat="server" class="form-group col-md-12">
                     <label for="TxtUsuario" class="fw-bold">Usuario:</label>
                     <asp:TextBox runat="server" type="text" class="form-control" name="TxtUsuario" id="TxtUsuario" maxlength="50" value=""
-                        placeholder="Usuario..." required></asp:TextBox>
+                        placeholder="Ingrese su nombre de Usuario..." required></asp:TextBox>
                 </div>
 
                 <div class="form-group col-md-12">
                     <label for="txtPass" class="fw-bold">Contraseña:</label>
                     <asp:TextBox runat="server" type="password" class="form-control" name="txtPass" id="txtPass" maxlength="50" value=""
-                        placeholder="Contraseña..." required></asp:TextBox>
+                        placeholder="Ingrese su Contraseña..." required></asp:TextBox>
                 </div>
                 <div class="form-group">
                         <asp:Label ID="lblNoti" runat="server" Text="" CssClass="control-label-sm-2"></asp:Label>

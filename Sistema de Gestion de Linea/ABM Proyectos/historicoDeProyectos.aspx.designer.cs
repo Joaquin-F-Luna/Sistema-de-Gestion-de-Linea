@@ -33,13 +33,31 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
         protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// Control txtnroticket.
+        /// Control lbUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtnroticket;
+        protected global::System.Web.UI.WebControls.Label lbUsuario;
+
+        /// <summary>
+        /// Control lbActualizacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbActualizacion;
+
+        /// <summary>
+        /// Control nroticket.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox nroticket;
 
         /// <summary>
         /// Control nrolinea.
@@ -51,22 +69,22 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
         protected global::System.Web.UI.WebControls.TextBox nrolinea;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control nroticketActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox nroticketActual;
 
         /// <summary>
-        /// Control TextBox2.
+        /// Control nrolineaActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox nrolineaActual;
 
         /// <summary>
         /// Control descripcion.
@@ -78,13 +96,13 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
         protected global::System.Web.UI.WebControls.TextBox descripcion;
 
         /// <summary>
-        /// Control TextBox3.
+        /// Control descripcionActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox descripcionActual;
 
         /// <summary>
         /// Control fechainicio.
@@ -105,22 +123,22 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
         protected global::System.Web.UI.WebControls.TextBox fechafin;
 
         /// <summary>
-        /// Control TextBox4.
+        /// Control fechainicioActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox fechainicioActual;
 
         /// <summary>
-        /// Control TextBox5.
+        /// Control fechafinActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox fechafinActual;
 
         /// <summary>
         /// Control calle.
@@ -141,22 +159,22 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
         protected global::System.Web.UI.WebControls.TextBox nrocalle;
 
         /// <summary>
-        /// Control TextBox6.
+        /// Control calleActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox6;
+        protected global::System.Web.UI.WebControls.TextBox calleActual;
 
         /// <summary>
-        /// Control TextBox7.
+        /// Control nrocalleActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox7;
+        protected global::System.Web.UI.WebControls.TextBox nrocalleActual;
 
         /// <summary>
         /// Control localidad.
@@ -168,13 +186,13 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
         protected global::System.Web.UI.WebControls.TextBox localidad;
 
         /// <summary>
-        /// Control TextBox8.
+        /// Control localidadActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox8;
+        protected global::System.Web.UI.WebControls.TextBox localidadActual;
 
         /// <summary>
         /// Control DDL_TipoTrab.
@@ -195,21 +213,30 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
         protected global::System.Web.UI.WebControls.DropDownList DDL_tipoPriori;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control tipotrabajoActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList tipotrabajoActual;
 
         /// <summary>
-        /// Control DropDownList2.
+        /// Control prioridadActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList prioridadActual;
+
+        /// <summary>
+        /// Control gdtodosproyectos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gdtodosproyectos;
     }
 }

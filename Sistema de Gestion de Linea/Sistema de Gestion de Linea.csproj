@@ -77,14 +77,16 @@
     <Content Include="ABM Proyectos\Ver Proyectos.aspx" />
     <Content Include="ABM Usuarios\AltadeUsuario.aspx" />
     <Content Include="ABM Usuarios\cambiarPass.aspx" />
-    <Content Include="ABM Usuarios\ModificacionUsuario.aspx" />
+    <Content Include="ABM Usuarios\ListaUsuario.aspx" />
+    <Content Include="ABM Usuarios\ModificarUsuario.aspx" />
     <Content Include="App_Data\DatabaseSGL.mdf" />
     <Content Include="App_Data\DatabaseSGL_log.ldf">
       <DependentUpon>DatabaseSGL.mdf</DependentUpon>
     </Content>
+    <Content Include="Asignaciones\asignaciones_vencidas.aspx" />
     <Content Include="Asignaciones\AsignacionProyectos.aspx" />
+    <Content Include="Asignaciones\devolucionAsignacion.aspx" />
     <Content Include="Bienvenidos.aspx" />
-    <Content Include="index.html" />
     <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.css" />
     <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.rtl.css" />
@@ -165,12 +167,26 @@
     <Compile Include="ABM Usuarios\cambiarPass.aspx.designer.cs">
       <DependentUpon>cambiarPass.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ABM Usuarios\ModificacionUsuario.aspx.cs">
-      <DependentUpon>ModificacionUsuario.aspx</DependentUpon>
+    <Compile Include="ABM Usuarios\ListaUsuario.aspx.cs">
+      <DependentUpon>ListaUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ABM Usuarios\ModificacionUsuario.aspx.designer.cs">
-      <DependentUpon>ModificacionUsuario.aspx</DependentUpon>
+    <Compile Include="ABM Usuarios\ListaUsuario.aspx.designer.cs">
+      <DependentUpon>ListaUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Usuarios\ModificarUsuario.aspx.cs">
+      <DependentUpon>ModificarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM Usuarios\ModificarUsuario.aspx.designer.cs">
+      <DependentUpon>ModificarUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asignaciones\asignaciones_vencidas.aspx.cs">
+      <DependentUpon>asignaciones_vencidas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asignaciones\asignaciones_vencidas.aspx.designer.cs">
+      <DependentUpon>asignaciones_vencidas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asignaciones\AsignacionProyectos.aspx.cs">
       <DependentUpon>AsignacionProyectos.aspx</DependentUpon>
@@ -178,6 +194,13 @@
     </Compile>
     <Compile Include="Asignaciones\AsignacionProyectos.aspx.designer.cs">
       <DependentUpon>AsignacionProyectos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asignaciones\devolucionAsignacion.aspx.cs">
+      <DependentUpon>devolucionAsignacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asignaciones\devolucionAsignacion.aspx.designer.cs">
+      <DependentUpon>devolucionAsignacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Bienvenidos.aspx.cs">
       <DependentUpon>Bienvenidos.aspx</DependentUpon>
