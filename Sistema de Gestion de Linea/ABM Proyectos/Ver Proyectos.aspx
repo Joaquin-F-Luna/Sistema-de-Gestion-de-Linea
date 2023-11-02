@@ -11,11 +11,7 @@
         <!-- Bootstrap CSS -->
         <!-- Agrega la referencia al archivo CSS de Bootstrap desde la CDN -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
-       
-
-
-
+           
     </head>
 
     <body>
@@ -94,44 +90,47 @@
                             <div class="alert alert-primary" role="alert">
                                 <h4 class="title">Todos los proyectos</h4>
                             </div>
+
+                              <div class="form-group col-md-3">
+                                  <asp:Button ID="btnExcel" CssClass="form-control btn btn-primary" runat="server" Text="Exportar" OnClick="btnExcel_Click" />
+                                  </div>
                           </div>
 <%----------------------------------------------FILTROS -------------------------------------------------------------%>
-                          <div class="form-control d-grid gap-2">
-                          <div class="row">
-                           <div class="form-group col-md-3">
-                              <asp:DropDownList ID="ddlEstado" runat="server"  BackColor="ButtonShadow" Font-Size="Large" 
-                                  DataSourceID="SqlDataSource3" DataTextField="Estado" DataValueField="Id"
-                                   CssClass="form-select" Font-Bold="False" Font-Italic="False" Font-Names="Arial"
-                                  Font-Overline="False" ForeColor="#333333" AutoPostBack="True">
-                                </asp:DropDownList>
+                            <div class="form-control d-grid gap-2">
+                            <div class="row">
+                            <div class="form-group col-md-3">
+                            <asp:CheckBoxList runat="server" DataSourceID="SqlDataSource3" ID="cblEstado" DataTextField="Estado"></asp:CheckBoxList>
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
+                            SelectCommand="SELECT * FROM [EstadoProyecto]">
+                            </asp:SqlDataSource>
+                            </div>
 
-                               <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
-                                   SelectCommand="SELECT * FROM [EstadoProyecto]">
-                                </asp:SqlDataSource>
-                               </div>
+                            <div class="form-check col-md-3">
+                            <asp:CheckBoxList runat="server" DataSourceID="SqlDataSource4" OnCheckedChanged="cblPrioridad_CheckedChanged"
+                            ID="cblPrioridad" DataTextField="Descripción"></asp:CheckBoxList>
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
+                            SelectCommand="SELECT * FROM [Prioridad]">
+                            </asp:SqlDataSource>
+                            </div>
 
-                               <div class="form-check col-md-3">
-                                   
-                                  <asp:CheckBoxList runat="server" DataSourceID="SqlDataSource4" OnCheckedChanged="cblPrioridad_CheckedChanged" ID="cblPrioridad" DataTextField="Descripción"></asp:CheckBoxList>
-                                       
-                                   
-                               <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
-                                   SelectCommand="SELECT * FROM [Prioridad]">
-                               </asp:SqlDataSource>
-                                   
-                               </div>
-                              <div class="form-check col-md-4">
-                                  <asp:CheckBoxList runat="server" DataSourceID="SqlDataSource5" ID="cblTipo" OnCheckedChanged="cblTipo_CheckedChanged" DataTextField="Descripción"></asp:CheckBoxList>
-                                      <asp:SqlDataSource runat="server" ID="SqlDataSource5" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
-                                   SelectCommand="SELECT * FROM [TipoDeTrabajo]">
-                               </asp:SqlDataSource>
-                              </div>
-                              <div class="form-group col-md-3">
-                              <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar Filtros" OnClick="btnAplicarFiltros_Click" />
-                                  </div>
-                              </div>
-                              </div>
+                            <div class="form-check col-md-4">
+                            <asp:CheckBoxList runat="server" DataSourceID="SqlDataSource5" ID="cblTipo" OnCheckedChanged="cblTipo_CheckedChanged" DataTextField="Descripción"></asp:CheckBoxList>
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource5" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
+                            SelectCommand="SELECT * FROM [TipoDeTrabajo]">
+                            </asp:SqlDataSource>
+                            </div>
+
+                            
+                            </div><br />
+                            </div>
+                            
 <%----------------------------------------------FILTROS FIN -------------------------------------------------------------%>
+                <div class="form-group col-md-3">
+                            
+                            <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar Filtros" OnClick="btnAplicarFiltros_Click" class="btn btn-primary" style="width: 100%;" />
+
+                            
+                            </div>
 <%----------------------------------------------GRIDVIEW -------------------------------------------------------------%>
                           <div class="form-control d-grid gap-2 centered-gridview">
                               <asp:GridView ID="todoslosproyectos" runat="server" OnPageIndexChanging="todoslosproyectos_PageIndexChanging" 
