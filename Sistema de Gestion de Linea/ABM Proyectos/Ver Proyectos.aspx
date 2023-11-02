@@ -12,8 +12,7 @@
         <!-- Agrega la referencia al archivo CSS de Bootstrap desde la CDN -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
-        
-
+       
 
 
 
@@ -38,6 +37,7 @@
                     <div class="col-lg-5">
                         <asp:Button ID="buscarProyecto" runat="server" class="form-control btn btn-primary" Text="Buscar" OnClick="buscarProyecto_Click1" />
                     </div>
+<%----------------------------------------------GRIDVIEW -------------------------------------------------------------%>
                 <div class="form-control d-grid gap-2 centered-gridview">
                     <asp:GridView ID="gdListaUno" runat="server" AutoGenerateColumns="False" DataKeyNames="NumeroTicket"
                         DataSourceID="SqlDataSource2" BorderStyle="None"
@@ -87,6 +87,7 @@
                         </SelectParameters>
                     </asp:SqlDataSource>
                 </div>
+<%----------------------------------------------GRIDVIEW FIN-------------------------------------------------------------%>
                       <div class="form-control d-grid gap-2">
 
                           <div class="continer-fluid">
@@ -94,11 +95,14 @@
                                 <h4 class="title">Todos los proyectos</h4>
                             </div>
                           </div>
-
+<%----------------------------------------------FILTROS -------------------------------------------------------------%>
+                          <div class="form-control d-grid gap-2">
                           <div class="row">
-                           <div class="form-group col-md-5">
-                              <asp:DropDownList ID="ddlEstado" runat="server"  BackColor="ButtonShadow" Font-Size="Large" DataSourceID="SqlDataSource3" DataTextField="Estado" DataValueField="Id"
-                                   CssClass="form-select" Font-Bold="False" Font-Italic="False" Font-Names="Arial" Font-Overline="False" ForeColor="#333333" AutoPostBack="True">
+                           <div class="form-group col-md-3">
+                              <asp:DropDownList ID="ddlEstado" runat="server"  BackColor="ButtonShadow" Font-Size="Large" 
+                                  DataSourceID="SqlDataSource3" DataTextField="Estado" DataValueField="Id"
+                                   CssClass="form-select" Font-Bold="False" Font-Italic="False" Font-Names="Arial"
+                                  Font-Overline="False" ForeColor="#333333" AutoPostBack="True">
                                 </asp:DropDownList>
 
                                <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
@@ -106,21 +110,35 @@
                                 </asp:SqlDataSource>
                                </div>
 
-                               <div class="form-group col-md-5">
-                             <asp:DropDownList ID="DropDownList1" runat="server" BackColor="ButtonShadow" Font-Size="Large" 
-                                    CssClass="form-select"  DataSourceID="SqlDataSource4" DataTextField="Descripción" DataValueField="idPrioridad"
-                                   Font-Bold="False" Font-Italic="False" Font-Names="Arial" Font-Overline="False" ForeColor="#333333" AutoPostBack="True">
-                           </asp:DropDownList>
+                               <div class="form-check col-md-3">
+                                   
+                                  <asp:CheckBoxList runat="server" DataSourceID="SqlDataSource4" OnCheckedChanged="cblPrioridad_CheckedChanged" ID="cblPrioridad" DataTextField="Descripción"></asp:CheckBoxList>
+                                       
+                                   
                                <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
                                    SelectCommand="SELECT * FROM [Prioridad]">
                                </asp:SqlDataSource>
+                                   
                                </div>
+                              <div class="form-check col-md-4">
+                                  <asp:CheckBoxList runat="server" DataSourceID="SqlDataSource5" ID="cblTipo" OnCheckedChanged="cblTipo_CheckedChanged" DataTextField="Descripción"></asp:CheckBoxList>
+                                      <asp:SqlDataSource runat="server" ID="SqlDataSource5" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
+                                   SelectCommand="SELECT * FROM [TipoDeTrabajo]">
+                               </asp:SqlDataSource>
                               </div>
-
+                              <div class="form-group col-md-3">
+                              <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar Filtros" OnClick="btnAplicarFiltros_Click" />
+                                  </div>
+                              </div>
+                              </div>
+<%----------------------------------------------FILTROS FIN -------------------------------------------------------------%>
+<%----------------------------------------------GRIDVIEW -------------------------------------------------------------%>
                           <div class="form-control d-grid gap-2 centered-gridview">
-                              <asp:GridView ID="todoslosproyectos" runat="server" BackColor="White" BorderColor="#DEDFDE"
+                              <asp:GridView ID="todoslosproyectos" runat="server" OnPageIndexChanging="todoslosproyectos_PageIndexChanging" 
+                                 
+                                  BackColor="White" BorderColor="#DEDFDE"
                                   BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical"
-                                  AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True" DataKeyNames="Proyecto">
+                                  AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" DataKeyNames="Proyecto">
                               <AlternatingRowStyle BackColor="White" />
              
                      <Columns>
@@ -145,6 +163,11 @@
                          <asp:BoundField DataField="Prioridad" HeaderText="Prioridad" SortExpression="Prioridad"></asp:BoundField>
                          <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"></asp:BoundField>
                      </Columns>
+                                  <EmptyDataTemplate>
+                                    <div class="text-center">
+                                        Sin resultados
+                                    </div>
+                                </EmptyDataTemplate>
 
                               <FooterStyle BackColor="#CCCC99" />
                               <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
@@ -156,25 +179,13 @@
                               <SortedDescendingCellStyle BackColor="#EAEAD3" />
                               <SortedDescendingHeaderStyle BackColor="#575357" />
                           </asp:GridView>
-                              <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBSGL %>"
-                                  SelectCommand="SELECT Proyecto.ID_Proyecto AS 'Proyecto', Proyecto.NumeroTicket AS 'Ticket', Proyecto.NumeroLinea AS 'Linea', 
-                                  Proyecto.Descripcion, Proyecto.Localidad, Proyecto.Calle, Proyecto.NumeroCalle AS 'Altura', Proyecto.FechaInicio AS 'Inicio', 
-                                  Proyecto.FechaFinalizacion AS 'Final', EstadoProyecto.Estado, USUARIOS.Username AS 'Usuario',
-                                  Prioridad.Descripción AS 'Prioridad', TipoDeTrabajo.Descripción AS 'Tipo' 
-                                  FROM Proyecto INNER JOIN EstadoProyecto ON Proyecto.FK_ID_Estado = EstadoProyecto.Id 
-                                  INNER JOIN USUARIOS ON Proyecto.FK_ID_Usuario = USUARIOS.Id 
-                                  INNER JOIN TipoDeTrabajo ON Proyecto.idTipoTrabajo_FK = TipoDeTrabajo.idTipoTrabajo 
-                                  INNER JOIN Prioridad ON Proyecto.idPrioridad_FK = Prioridad.idPrioridad
-                                    WHERE EstadoProyecto.Id = @proyectoEstado">
-                                  <SelectParameters>
-                                      <asp:ControlParameter ControlID="ddlEstado" PropertyName="SelectedValue" DefaultValue="Pendiente" Name="proyectoEstado"></asp:ControlParameter>
-                                  </SelectParameters>
-                              </asp:SqlDataSource>
+                     
 
 
                           </div>
                       </div>
-            </form>
+<%----------------------------------------------GRIDVIEW FIN-------------------------------------------------------------%> 
+                </form>
             </div>
     </body>
     </html>

@@ -69,13 +69,13 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control cblPrioridad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.CheckBoxList cblPrioridad;
 
         /// <summary>
         /// Control SqlDataSource4.
@@ -87,6 +87,33 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource4;
 
         /// <summary>
+        /// Control cblTipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cblTipo;
+
+        /// <summary>
+        /// Control SqlDataSource5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource5;
+
+        /// <summary>
+        /// Control btnAplicarFiltros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAplicarFiltros;
+
+        /// <summary>
         /// Control todoslosproyectos.
         /// </summary>
         /// <remarks>
@@ -94,14 +121,5 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView todoslosproyectos;
-
-        /// <summary>
-        /// Control SqlDataSource1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
     }
 }
