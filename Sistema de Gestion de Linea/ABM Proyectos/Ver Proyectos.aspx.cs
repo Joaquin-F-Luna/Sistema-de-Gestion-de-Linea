@@ -104,40 +104,53 @@ namespace Sistema_de_Gestion_de_Linea.ABM_Proyectos
 
         public void ExportToExcel(GridView gridView, string nombreArchivo)
         {
-            using (XLWorkbook wb = new XLWorkbook())
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", $"attachment;filename={nombreArchivo}.xlsx");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+            using (XLWorkbook workbook = new XLWorkbook())
             {
                 DataTable dt = new DataTable();
 
-                foreach (TableCell cell in gridView.HeaderRow.Cells)
+                // Agregar las columnas al DataTable
+                int i = 0;
+                foreach (DataControlFieldHeaderCell cell in gridView.HeaderRow.Cells)
                 {
-                    dt.Columns.Add(cell.Text);
+                    if (i != 0)
+                    {
+                        dt.Columns.Add(cell.Text);
+                    }
+                    i++;
                 }
 
+                // Agregar las filas al DataTable
                 foreach (GridViewRow row in gridView.Rows)
                 {
                     DataRow dr = dt.NewRow();
-                    for (int i = 0; i < row.Cells.Count; i++)
+                    for (int j = 0; j < gridView.Columns.Count - 1; j++) // Cambiado a -1 para omitir la última columna (Editar)
                     {
-                        dr[i] = row.Cells[i].Text;
+                        dr[j] = Server.HtmlDecode(row.Cells[j + 1].Text); // Añadido +1 para ajustar el índice
                     }
                     dt.Rows.Add(dr);
                 }
 
-                wb.Worksheets.Add(dt, "Proyectos");
+                // Agregar DataTable al workbook
+                var worksheet = workbook.Worksheets.Add("Proyectos");
+                worksheet.Cell(1, 1).InsertTable(dt);
 
-                string filePath = Server.MapPath("~/ArchivosExcel/") + nombreArchivo + ".xlsx";
-                wb.SaveAs(filePath);
-
-                // Proporcionar un enlace para descargar el archivo
-                Response.Clear();
-                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.AppendHeader("Content-Disposition", "attachment; filename=" + nombreArchivo + ".xlsx");
-                Response.TransmitFile(filePath);
-                Response.End();
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    workbook.SaveAs(memoryStream);
+                    memoryStream.WriteTo(Response.OutputStream);
+                    memoryStream.Close();
+                }
             }
+
+            Response.Flush();
+            Response.End();
         }
-
-
 
         public override void VerifyRenderingInServerForm(Control control)
         {

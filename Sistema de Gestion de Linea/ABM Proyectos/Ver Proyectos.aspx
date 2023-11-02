@@ -21,7 +21,7 @@
                 <h4 class="title">Buscar un proyecto</h4>
             </div>
         </div>
-
+           
             <form runat="server" class="row row-cols-lg-auto g-4 align-items-center">
               
                     <div class="col-lg-5">
@@ -46,7 +46,8 @@
                             <asp:Button ID="btnIrAEditar" runat="server" Text="Editar" OnClick="btnIrAEditar_Click" 
                                  PostBackUrl='<%# "Editar Proyecto.aspx?Proyecto=" + Eval("Proyecto") %>' />
                              </ItemTemplate></asp:TemplateField>
-                            <asp:BoundField DataField="Proyecto" HeaderText="Proyecto" SortExpression="Proyecto" />
+
+                            <asp:BoundField DataField="Proyecto" HeaderText="Proyecto" SortExpression="Proyecto" Visible="true" />
                             <asp:BoundField DataField="NumeroTicket" HeaderText="Ticket" SortExpression="NumeroTicket" />
                             <asp:BoundField DataField="Linea" HeaderText="Linea" SortExpression="N. Linea" />
                             <asp:BoundField DataField="Descripción" HeaderText="Descripción" SortExpression="Descripción" />
